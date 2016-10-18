@@ -1,0 +1,22 @@
+{
+  "name": "frontend-practice",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Project intended to help omr learn better frontend programming.",
+  "author": {
+    "name": "Luis Rogelio Hernández López",
+    "email": "luis.hlopez@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kurtz1993/frontend-practice"
+  },
+  "contributors": [
+    "Homero Silva",
+    "Néstor Iván"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
