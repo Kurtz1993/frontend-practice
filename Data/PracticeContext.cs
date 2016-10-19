@@ -5,11 +5,14 @@ namespace FrontendPractice.Data
 {
     public class PracticeContext : DbContext
     {
+        public DbSet<Game> Games { get; set; }
+
         public PracticeContext(DbContextOptions<PracticeContext> options) : base(options)
         {
-        }
+            Database.Migrate();
 
-        public DbSet<Game> Games;
+            Database.EnsureCreated();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
