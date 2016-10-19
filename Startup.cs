@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using FrontendPractice.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
