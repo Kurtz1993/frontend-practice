@@ -4,15 +4,19 @@ using FrontendPractice.Models;
 
 namespace FrontendPractice.Data
 {
-    public static class DbInitializer
+    public class DbInitializer
     {
+        private PracticeContext _context;
+        public DbInitializer (PracticeContext context)
+        {
+            _context = context;
+        }
         /// <summary>
         /// Initializes the database with test data.
         /// </summary>
-        /// <param name="context">Application's DbContext.</param>
-        public static void Initialize(PracticeContext context)
+        public void Initialize()
         {
-            if (context.Games.Any())
+            if (_context.Games.Any())
             {
                 return;
             }
@@ -22,9 +26,9 @@ namespace FrontendPractice.Data
                 new Game {Name = "Monopoly", Description = "Get rich real quick!", MaximumPlayers = 8}
             };
 
-            context.Games.AddRange(games);
+            _context.Games.AddRange(games);
 
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }
