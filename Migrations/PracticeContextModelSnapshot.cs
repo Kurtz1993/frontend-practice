@@ -13,24 +13,9 @@ namespace frontendpractice.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
+                .HasAnnotation("ChangeDetector.SkipDetectChanges", "true")
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("FrontendPractice.Models.Game", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("MaximumPlayers");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Games");
-                });
         }
     }
 }
