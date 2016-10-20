@@ -17,30 +17,37 @@ namespace FrontendPractice.Controllers
             _context = context;
         }
 
-        [HttpGetAttribute]
+        [HttpGet]
         public IEnumerable<Game> Get()
         {
             return _context.Games.ToList();
         }
 
-        [HttpPostAttribute]
-        public IActionResult Post([FromBodyAttribute]Game game)
+        [HttpGet, Route("get/{id}")]
+        public Game GetGame(string id)
+        {
+            var game = _context.Games.Where(g => g.Id == Guid.Parse(id)).FirstOrDefault();
+            return game;
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody]Game game)
         {
             _context.Games.Add(game);
             _context.SaveChanges();
             return Created("", game);
         }
 
-        [HttpPutAttribute]
-        public IActionResult Put([FromBodyAttribute] Game game)
+        [HttpPut]
+        public IActionResult Put([FromBody] Game game)
         {
             _context.Games.Update(game);
             _context.SaveChanges();
             return Ok();
         }
 
-        [HttpDeleteAttribute]
-        public IActionResult Delete([FromBodyAttribute]string id)
+        [HttpDelete]
+        public IActionResult Delete([FromBody]string id)
         {
             var game = _context.Games.Where(g => g.Id == Guid.Parse(id)).FirstOrDefault();
             _context.Games.Remove(game);
