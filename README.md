@@ -26,3 +26,5 @@ ID must be contained in the body of the request.
 
 Deletes the game that matches the specified.
 ID must be contained in the body of the request.
+
+Fuck u, got the repo
