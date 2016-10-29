@@ -1,15 +1,15 @@
 .heading {
     background-color:#20629a;
 }
-.heading a{
+.heading  a{
   font-weight: bold;
-  color: red;
+  color: #fff;
 }
-.heading a:hover, a:focus{
+.heading > li > a:hover, a:focus{
   background-color: #20629a;
   color: #20629a;
   background-image:none !important;
 }
-.brand-name a:hover {
-      color: antiquewhite;
+.title {
+  padding-left: 30px;
 }
