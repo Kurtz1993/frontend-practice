@@ -5,9 +5,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>   
     <script src="../scripts/app.js"></script>
     <script src="../scripts/controllers/GameListController.js"></script>
+    <script src="../scripts/controllers/NavController.js"></script>
     
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style/common.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -20,29 +23,21 @@
     <div class="navbar-header">
       <a class="navbar-brand brand-name" href="#">Game world</a>
     </div>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" ng-controller='NavController'>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">List <span class="sr-only"></span></a></li>
-        <li><a href="#">Add new</a></li>
+        <li><a href="#" ng-click="navigate('add')">Add new</a></li>
         <li><a href="#">Update</a></li>
         <li><a href="#">Remove</a></li>
       </ul>
     </div>
   </div>
 </nav>
-<div ng-controller="GameListController">
-  <h1 class="title">{{title}}</h1>
-  <div class="row">
-        <div class="col-lg-1">
-        </div>
-    <div class="col-lg-11"> 
-          <div ng-repeat="game in games"> 
-            <h2> {{game.name}}</h2>
-            <label>Description:</label> <p> {{game.description}}</p>
-            <label>Maximum number of players:</label> <p> {{game.maximumPlayers}}</p>
-          </div> 
-    </div>  
-  </div>
+
+<div class="container">
+  <div ui-view></div>
 </div>
+
+
 </body>
 </html>

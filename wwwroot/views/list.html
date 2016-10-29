@@ -1,0 +1,14 @@
+<div ng-controller="GameListController">
+  <h1 class="title">{{title}}</h1>
+  <div class="row">
+        <div class="col-lg-1">
+        </div>
+    <div class="col-lg-11"> 
+          <div ng-repeat="game in games"> 
+            <h2> {{game.name}}</h2>
+            <label>Description:</label> <p> {{game.description}}</p>
+            <label>Maximum number of players:</label> <p> {{game.maximumPlayers}}</p>
+          </div> 
+    </div>  
+  </div>
+</div>
