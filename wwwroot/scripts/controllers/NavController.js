@@ -1,7 +1,7 @@
-app.controller('NavController', ['$scope', '$location',function($scope,$location){
+app.controller('NavController', ['$scope', '$state',function($scope,$state){
 
 $scope.navigate = function(route) {
-    $location.path('/' + route);
+    $state.go(route);
 };
 
 }]);
