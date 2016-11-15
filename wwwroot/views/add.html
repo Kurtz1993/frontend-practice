@@ -1,1 +1,33 @@
-ADD N3W
+<div ng-controller="addGameController"> 
+      <h1 class="title">Add Game</h1>
+      <div class="row"> 
+          <div class="col-lg-2 col-lg-offset-1"> 
+            <label> Name </label>
+          </div>
+          <div class="col-lg-4"> 
+            <input id="name" ng-model="game.name" > </input>
+          </div>
+      </div>
+      <div class="row"> 
+          <div class="col-lg-2 col-lg-offset-1"> 
+            <label> Description </label>
+          </div>
+          <div class="col-lg-4"> 
+            <textarea id="description" ng-model="game.description" rows="5"> </textarea>
+          </div>
+      </div>
+      <div class="row"> 
+          <div class="col-lg-2 col-lg-offset-1"> 
+            <label> Max number of players </label>
+          </div>
+          <div class="col-lg-4"> 
+            <input id="name" type="number" ng-model="game.maximumPlayers" min="1" max="10" > </input>
+          </div>
+      </div>
+      <div class="row"> 
+          <div class="col-lg-4 col-lg-offset-1"> 
+            <button name="create" ng-click="createNew()"> Add new game </button>
+          </div>
+      </div>
+      
+</div>
