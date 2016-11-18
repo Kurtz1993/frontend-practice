@@ -1,4 +1,4 @@
-var app = angular.module('gameWorldApp',['ui.router', 'ui.bootstrap']);
+var app = angular.module('gameWorldApp',['ui.router', 'ui.bootstrap','ngMaterial']);
 
 app.config(function($stateProvider,$urlRouterProvider){
     $urlRouterProvider.otherwise('/home');

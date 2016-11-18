@@ -26,12 +26,12 @@ namespace FrontendPractice.Controllers
         [HttpGet, Route("get/{id}")]
         public Game GetGame(string id)
         {
-            var game = _context.Games.Where(g => g.Id == Guid.Parse(id)).FirstOrDefault();
+            var game = _context.Games.FirstOrDefault(g => g.Id == Guid.Parse(id));
             return game;
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Game game)
+        public IActionResult Post([FromBody] Game game)
         {
             _context.Games.Add(game);
             _context.SaveChanges();
@@ -39,7 +39,7 @@ namespace FrontendPractice.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Game game)
+        public IActionResult PutGame([FromBody] Game game)
         {
             _context.Games.Update(game);
             _context.SaveChanges();
@@ -47,12 +47,12 @@ namespace FrontendPractice.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete([FromBody]string id)
+        public IActionResult DeleteGame([FromBody] Game game)
         {
-            var game = _context.Games.Where(g => g.Id == Guid.Parse(id)).FirstOrDefault();
-            _context.Games.Remove(game);
+            var selectedGame = _context.Games.FirstOrDefault(g => g.Id == Guid.Parse(game.Id.ToString()));
+            _context.Games.Remove(selectedGame);
             _context.SaveChanges();
-            return Delete(id);
+            return Ok();
         }
     }
 }
