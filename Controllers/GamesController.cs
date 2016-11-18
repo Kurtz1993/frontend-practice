@@ -46,11 +46,11 @@ namespace FrontendPractice.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteGame([FromBody] Game game)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteGame(string id)
         {
-            var selectedGame = _context.Games.FirstOrDefault(g => g.Id == Guid.Parse(game.Id.ToString()));
-            _context.Games.Remove(selectedGame);
+            var game = _context.Games.FirstOrDefault(g => g.Id == Guid.Parse(id));
+            _context.Games.Remove(game);
             _context.SaveChanges();
             return Ok();
         }
