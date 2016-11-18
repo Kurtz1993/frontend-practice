@@ -23,11 +23,10 @@ app.controller('GameListController', ['$scope', '$http', '$mdDialog',
                 $http(
                     {
                         method: 'DELETE',
-                        url: 'api/games',
+                        url: 'api/games/'.concat(game.id),
                         headers: {
                             'Content-Type': 'application/json'
-                        },
-                        data: game
+                        }
                     }
                 ).then(function (response) {
                     toastr.success('Game deleted!');
