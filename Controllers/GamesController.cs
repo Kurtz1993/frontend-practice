@@ -23,7 +23,7 @@ namespace FrontendPractice.Controllers
             return _context.Games.ToList();
         }
 
-        [HttpGet, Route("get/{id}")]
+        [HttpGet("get/{id}")]
         public Game GetGame(string id)
         {
             var game = _context.Games.FirstOrDefault(g => g.Id == Guid.Parse(id));
