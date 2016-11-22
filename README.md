@@ -22,9 +22,6 @@ Updates the game that matches the specified ID.
 
 ID must be contained in the body of the request.
 
-### DELETE /api/games
+### DELETE /api/games/{id}
 
 Deletes the game that matches the specified.
-ID must be contained in the body of the request.
-
-Fuck u, got the repo
