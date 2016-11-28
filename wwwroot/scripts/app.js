@@ -1,8 +1,6 @@
 var app = angular.module('gameWorldApp',['ui.router', 'ui.bootstrap','ngMaterial']);
 
 app.config(function($stateProvider,$urlRouterProvider){
-    $urlRouterProvider.otherwise('/home');
-
     $stateProvider.state('home', {
         url:'/home',
         templateUrl: '/views/list.html'
@@ -12,6 +10,7 @@ app.config(function($stateProvider,$urlRouterProvider){
     }).state('edit',{
         url:'/edit/{gameId}',
         templateUrl: '/views/edit.html'
-    })
+    });
 
-})
+    $urlRouterProvider.otherwise('/home');
+});
