@@ -1,35 +1,30 @@
-<div ng-controller="editGameController"> 
-      <h1 class="title">Edit Game</h1>
-      <div class="row"> 
-          <div class="col-lg-2 col-lg-offset-1"> 
-            <label> Name </label>
-          </div>
-          <div class="col-lg-4"> 
-            <input id="name" ng-model="game.name" > </input>
-          </div>
+<div ng-controller="editGameController as vm">
+  <h1 class="title">Edit Game</h1>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="gamename" class="col-lg-2 control-label"> Name </label>
+      <div class="col-lg-4">
+        <input id="gamename" class="form-control" ng-model="vm.game.name">
       </div>
-      <div class="row"> 
-          <div class="col-lg-2 col-lg-offset-1"> 
-            <label> Description </label>
-          </div>
-          <div class="col-lg-4"> 
-            <textarea id="description" ng-model="game.description" rows="5"> </textarea>
-          </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-lg-2 control-label"> Description </label>
+      <div class="col-lg-4">
+        <textarea id="description" class="form-control" ng-model="vm.game.description" rows="5"> </textarea>
       </div>
-      <div class="row"> 
-          <div class="col-lg-2 col-lg-offset-1"> 
-            <label> Max number of players </label>
-          </div>
-          <div class="col-lg-4"> 
-            <input id="name" type="number" ng-model="game.maximumPlayers" min="1" max="10" > </input>
-          </div>
+    </div>
+    <div class="form-group">
+      <label for="playernumber" class="col-lg-2"> Max number of players </label>
+      <div class="col-lg-4">
+        <input id="playernumber" class="form-control" type="number" ng-model="vm.game.maximumPlayers" min="1" max="10"> </input>
       </div>
-      <div class="row"> 
-          <div class="col-lg-4 col-lg-offset-1"> 
-            <button name="create" ng-click="update()"> Save changes </button>
-            <a ui-sref="home"> <button name="cancel"> Cancel </button></a>
-            
-          </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-4 col-lg-offset-2">
+        <button name="create" class="btn btn-primary" ng-click="vm.update()">Save changes </button>
+        <a ui-sref="home"> <button name="cancel" class="btn btn-danger"> Cancel </button></a>
+
       </div>
-      
+    </div>
+  </form>
 </div>

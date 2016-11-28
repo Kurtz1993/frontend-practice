@@ -1,9 +1,10 @@
 (function (ng) {
-    ng.module('gameWorldApp').controller('addGameController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
-        $scope.game = {};
+    ng.module('gameWorldApp').controller('addGameController', ['$http', '$state', function ($http, $state) {
+        var vm = this;
+        vm.game = {};
 
-        $scope.createNew = function () {
-            $http.post('api/games', $scope.game).then(function (response) {
+        vm.createNew = function () {
+            $http.post('api/games', vm.game).then(function (response) {
                 toastr.success('Game created');
                 $state.go('home');
             }, function (response) {

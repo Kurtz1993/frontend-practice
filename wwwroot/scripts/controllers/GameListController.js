@@ -1,16 +1,17 @@
 (function (ng) {
-    ng.module('gameWorldApp').controller('gameListController', ['$scope', '$http', '$mdDialog',
-        function ($scope, $http, $mdDialog) {
-            $scope.title = 'Game list';
+    ng.module('gameWorldApp').controller('gameListController', ['$http', '$mdDialog',
+        function ($http, $mdDialog) {
+            var vm = this;
+            vm.title = 'Game list';
             var loadGames = function () {
                 $http.get('api/games').then(function (response) {
-                    $scope.games = response.data;
+                    vm.games = response.data;
                 }, function (response) {
                     console.log("error getting games" + response.data)
                 });
             };
             loadGames();
-            $scope.showConfirm = function (ev, game) {
+            vm.showConfirm = function (ev, game) {
                 var confirm = $mdDialog.confirm()
                     .title('Are you sure you want to delete ' + game.name + '?')
                     .textContent('Once deleted you cant recover it')
