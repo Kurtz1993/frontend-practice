@@ -16,3 +16,26 @@
 .game-list-title{
   display: inline;
 }
+
+.card-container{
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px;
+}
+
+.card-header{
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.card-body{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.card-footer{
+  border-top: 1px solid #e5e5e5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -1,13 +1,22 @@
 <div ng-controller="gameListController as vm">
   <h1 class="title">{{vm.title}}</h1>
-          <div ng-repeat="game in vm.games"> 
-            <div class="row">
-              <div class="col-lg-11 col-lg-offset-1">
-            <h2 class="game-list-title"> {{game.name}}</h2> <a ui-sref="edit({gameId: '{{game.id}}' })"> <span class="glyphicon glyphicon-pencil"> </span> </a>  
-            <a href="" ng-click="vm.showConfirm($event, game)"><span class="glyphicon glyphicon-remove"> </span> </a> </br>
-            <label>Description:</label> <p> {{game.description}}</p>
-            <label>Maximum number of players:</label> <p> {{game.maximumPlayers}}</p>
-          </div> 
-    </div>  
+  <div ng-repeat="game in vm.games">
+    <div class="col-lg-3 col-md-3 col-sm-3 card-container">
+      <div class="card-header">
+        <h2 class="game-list-title"> {{game.name}}</h2>
+      </div>
+      <!-- <a ui-sref="edit({gameId: '{{game.id}}' })"> <span class="glyphicon glyphicon-pencil"> </span> </a> -->
+      <!-- <a href="" ng-click="vm.showConfirm($event, game)"><span class="glyphicon glyphicon-remove"> </span> </a> </br> -->
+      <div class="card-body">
+        <label>Description:</label>
+        <p> {{game.description}}</p>
+        <label>Maximum number of players:</label>
+        <p> {{game.maximumPlayers}}</p>
+      </div>
+      <div class="card-footer">
+        <a ui-sref="edit({gameId: '{{game.id}}' })" class="btn btn-primary" role="button">Edit</a>
+        <button name="create" class="btn btn-danger"  ng-click="vm.showConfirm($event, game)">Delete </button>
+      </div>
+    </div>
   </div>
 </div>
