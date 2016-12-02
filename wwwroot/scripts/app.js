@@ -1,7 +1,7 @@
 (function (ng) {
     var app = ng.module('gameWorldApp', ['ui.router', 'ui.bootstrap', 'ngMaterial']);
 
-    app.config(function ($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $stateProvider.state('home', {
             url: '/home',
             templateUrl: '/views/list.html'
@@ -14,5 +14,5 @@
         });
 
         $urlRouterProvider.otherwise('/home');
-    });
+    }]);
 })(window.angular);
