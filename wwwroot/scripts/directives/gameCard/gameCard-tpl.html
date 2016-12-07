@@ -1,0 +1,17 @@
+<div ng-repeat="game in vm.games">
+    <div class="card-container">
+        <div class="card-header">
+            <p class="game-list-title" title="{{game.name}}"> {{game.name}}</p>
+        </div>
+        <div class="card-body">
+            <label>Description:</label>
+            <p> {{game.description}}</p>
+            <label>Maximum number of players:</label>
+            <p> {{game.maximumPlayers}}</p>
+        </div>
+        <div class="card-footer">
+            <md-button class="md-raised md-primary" ui-sref="edit({gameId: '{{game.id}}' })">Edit</md-button>
+            <md-button class="md-raised md-warn " ng-click="vm.showConfirm($event, game)">Delete</md-button>
+        </div>
+    </div>
+</div>

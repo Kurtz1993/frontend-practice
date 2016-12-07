@@ -1,1 +1,128 @@
-!function(t){var e=t.module("gameWorldApp",["ui.router","ui.bootstrap","ngMaterial"]);e.config(["$stateProvider","$urlRouterProvider",function(t,e){t.state("home",{url:"/home",templateUrl:"/views/list.html"}).state("add",{url:"/add",templateUrl:"/views/add.html"}).state("edit",{url:"/edit/{gameId}",templateUrl:"/views/edit.html"}),e.otherwise("/home")}])}(window.angular),function(t){t.module("gameWorldApp").controller("addGameController",["$http","$state",function(t,e){var a=this;a.game={},a.createNew=function(){t.post("api/games",a.game).then(function(t){toastr.success("Game created"),e.go("home")},function(t){toastr.error("There was an error trying to add the new game: "+t.data)}).finally(function(){})}}])}(window.angular),function(t){t.module("gameWorldApp").controller("editGameController",["$http","$stateParams","$state",function(t,e,a){var o=this;t.get("api/games/get/"+e.gameId).then(function(t){o.game=t.data},function(t){toastr.error("There was an error trying to load the selected game. "+t.data)}).finally(function(){}),o.update=function(){t.put("api/games",o.game).then(function(){toastr.success("Game updated!"),a.go("home")},function(t){toastr.error("There was an error trying to load the selected game. "+t.data)})}}])}(window.angular),function(t){t.module("gameWorldApp").controller("gameListController",["$http","$mdDialog",function(t,e){var a=this;a.title="Game list";var o=function(){t.get("api/games").then(function(t){a.games=t.data},function(t){console.log("error getting games"+t.data)})};o(),a.showConfirm=function(a,n){var r=e.confirm().title("Are you sure you want to delete "+n.name+"?").textContent("Once deleted you cant recover it").targetEvent(a).ok("Yes").cancel("Cancel");e.show(r).then(function(){t({method:"DELETE",url:"api/games/".concat(n.id),headers:{"Content-Type":"application/json"}}).then(function(t){toastr.success("Game deleted!"),o()},function(t){toastr.error("Could not delete game, please try again later "+t.data)}).finally(function(){})})}}])}(window.angular);
+(function (ng) {
+    var app = ng.module('gameWorldApp', ['ui.router', 'ui.bootstrap', 'ngMaterial']);
+
+    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        $stateProvider.state('home', {
+            url: '/home',
+            templateUrl: '/views/list.html'
+        }).state('add', {
+            url: '/add',
+            templateUrl: '/views/add.html'
+        }).state('edit', {
+            url: '/edit/{gameId}',
+            templateUrl: '/views/edit.html'
+        });
+
+        $urlRouterProvider.otherwise('/home');
+    }]);
+})(window.angular);
+(function (ng) {
+    ng.module('gameWorldApp').controller('addGameController', ['$http', '$state', function ($http, $state) {
+        var vm = this;
+        vm.game = {};
+
+        vm.createNew = function () {
+            $http.post('api/games', vm.game).then(function (response) {
+                toastr.success('Game created');
+                $state.go('home');
+            }, function (response) {
+                toastr.error('There was an error trying to add the new game: ' + response.data);
+            }).finally(function () {
+            });
+        };
+    }]);
+
+})(window.angular);
+(function (ng) {
+    ng.module('gameWorldApp').controller('editGameController', ['$http', '$stateParams', '$state',
+        function ($http, $stateParams, $state) {
+            var vm = this;
+
+            $http.get('api/games/get/' + $stateParams.gameId).then(function (response) {
+                vm.game = response.data;
+            }, function (response) {
+                toastr.error('There was an error trying to load the selected game. ' + response.data)
+            }).finally(function () {
+
+            });
+
+            vm.update = function () {
+                $http.put('api/games', vm.game).then(function () {
+                    toastr.success('Game updated!');
+                    $state.go('home');
+                }, function (response) {
+                    toastr.error('There was an error trying to load the selected game. ' + response.data)
+                });
+            };
+        }]);
+})(window.angular);
+(function (ng) {
+    ng.module('gameWorldApp').controller('gameListController', ['$http', '$mdDialog',
+        function ($http, $mdDialog) {
+            var vm = this;
+            vm.title = 'Game list';
+            vm.loadGames = function () {
+                $http.get('api/games').then(function (response) {
+                    vm.games = response.data;
+                }, function (response) {
+                    console.log("error getting games" + response.data)
+                });
+            };
+            vm.loadGames();
+           
+        }]);
+})(window.angular);
+(function (ng) {
+
+    ng.module('gameWorldApp').directive('gameCard', [
+        function () {
+            return {
+                templateUrl: 'scripts/directives/gameCard/gameCard-tpl.html',
+                restrict: 'E',
+                bindToController: true,
+                controller: gameCardController,
+                controllerAs: 'vm',
+                scope: {
+                    games: '=',
+                    loadGames: '&'
+                }
+            }
+        }
+
+    ]);
+
+    gameCardController.$inject = ['$http', '$mdDialog'];
+    
+    function gameCardController($http, $mdDialog) {
+        var vm = this;
+        vm.showConfirm = function (ev, game) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to delete ' + game.name + '?')
+                .textContent('Once deleted you cant recover it')
+                .targetEvent(ev)
+                .ok('Yes')
+                .cancel('Cancel');
+
+            $mdDialog.show(confirm).then(function () {
+                $http(
+                    {
+                        method: 'DELETE',
+                        url: 'api/games/'.concat(game.id),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                ).then(function (response) {
+                    toastr.success('Game deleted!');
+                    vm.loadGames();
+                }, function (response) {
+                    toastr.error('Could not delete game, please try again later ' + response.data);
+
+                }).finally(function () {
+
+                });
+            });
+        };
+    };
+
+})(window.angular);
